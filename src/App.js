@@ -8,6 +8,7 @@ import { Result } from './containers/result';
 function App() {
   return (
     <div className="App">
+
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Home/>}/>
