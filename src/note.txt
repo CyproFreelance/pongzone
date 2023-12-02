@@ -1,0 +1,108 @@
+import { initializeApp } from 'firebase/app';
+import { getDatabase } from 'firebase/database';
+
+const firebaseConfig = {
+  apiKey: "AIzaSyANc-4NBGYrWBYoHUPq3Zes06axp_C-JeA",
+  authDomain: "ponggame-406712.firebaseapp.com",
+  projectId: "ponggame-406712",
+  storageBucket: "ponggame-406712.appspot.com",
+  messagingSenderId: "166750811137",
+  appId: "1:166750811137:web:b34d56d98bb5fc0efd3c00",
+  measurementId: "G-1WDFEX4HQ0"
+};
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
+export { app, database };
+import { database } from './firebase';
+import { ref, set } from 'firebase/database';
+
+export const storeUserData = (userId, email, displayName) => {
+  const userRef = ref(database, `users/${userId}`);
+  set(userRef, { email, displayName, wins: 0, winStreak: 0 });
+};
+
+export const updateWinsAndStreak = (userId, wins, winStreak) => {
+  const userRef = ref(database, `users/${userId}`);
+  set(userRef, { wins, winStreak }, { merge: true });
+};
+import './App.css';
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
+import { Home } from './components/home';
+import { Load } from './components/loading';
+import { Game } from './components/game';
+import { Result } from './components/result';
+
+function App() {
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home/>}/>
+          <Route path='/matchmaking' element={<Load/>}/>
+          <Route path='/gameroom' element={<Game/>}/>
+          <Route path='/result' element={<Result/>}/>
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
+// Home.jsx
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import { storeUserData, updateWinsAndStreak } from '../firebaseservice'; // Adjust the path accordingly
+import logo from '../assets/logo.png';
+
+export const Home = () => {
+  const [isSignedIn, setIsSignedIn] = useState(false);
+  const navigate = useNavigate();
+
+  const responseGoogle = (response) => {
+    const { profileObj } = response;
+    const userId = profileObj.googleId;
+  
+    storeUserData(userId, profileObj.email, profileObj.displayName);
+  
+    setIsSignedIn(true);
+    navigate('/matchmaking');
+  };
+
+  const signOut = () => {
+    setIsSignedIn(false);
+    navigate('/')
+  };
+
+  useEffect(() => {
+    const userId = localStorage.getItem('userId');
+    if (userId) {
+      setIsSignedIn(true);
+      setTimeout(() => {
+        navigate('/matchmaking');
+      }, 5000);
+    }
+  }, [navigate]);
+
+  return (
+    <div id="homecontainer">
+      <img src={logo} alt="Logo" className="image" />
+      {isSignedIn ? (
+        <GoogleLogout
+          clientId="166750811137-et1b6hjpveudcbk6n5p3913dpfu7fd7e.apps.googleusercontent.com"
+          buttonText="Sign Out"
+          onLogoutSuccess={signOut}
+        />
+      ) : (
+        <GoogleLogin
+          clientId="166750811137-et1b6hjpveudcbk6n5p3913dpfu7fd7e.apps.googleusercontent.com"
+          buttonText="Sign In By Google"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+        />
+      )}
+    </div>
+  );
+};

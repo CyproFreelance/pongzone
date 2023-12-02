@@ -1,38 +1,48 @@
-.App {
-  text-align: center;
-}
+@import url("https://fonts.googleapis.com/css2?family=Titan+One&display=swap");
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  background: black;
+}
+img.image {
+  width: 45%;
+}
+
+div#homecontainer {
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-direction: column;
 }
-
-.App-link {
-  color: #61dafb;
+#homecontainer p {
+  color: #ffffffcf;
+  font-size: 24px;
+  font-family: "Titan one";
+  font-weight: 100;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+#login,
+#logout {
+  background-color: rgb(0 0 0);
+  display: inline-flex;
+  align-items: center;
+  color: rgb(255 255 255);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px,
+    rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+  padding: 0px;
+  font-size: 20px;
+  font-weight: 100;
+  font-family: sans-serif;
+  margin-top: 2%;
+  border: white solid 4px;
+  border-radius: 15px;
 }
