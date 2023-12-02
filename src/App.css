@@ -15,7 +15,10 @@ body {
   background: black;
 }
 img.image {
-  width: 45%;
+  width: 400px;
+  animation: fadeIn 1.5s ease-in-out forwards;
+  opacity: 0;
+  border-radius: 169px;
 }
 
 div#homecontainer {
@@ -29,6 +32,15 @@ div#homecontainer {
   font-size: 24px;
   font-family: "Titan one";
   font-weight: 100;
+}
+.nsm7Bb-HzV7m-LgbsSe.jVeSEe.i5vt6e-Ia7Qfc.uaxL4e-RbRzK {
+  background: black;
+  color: white;
+}
+
+.fmcmS {
+  color: white;
+  margin-top: 1%;
 }
 #login,
 #logout {
@@ -45,4 +57,12 @@ div#homecontainer {
   margin-top: 2%;
   border: white solid 4px;
   border-radius: 15px;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

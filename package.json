@@ -7,6 +7,7 @@
     "@react-oauth/google": "^0.12.1",
     "dom": "^0.0.3",
     "eslint-config-react-app": "^7.0.1",
+    "firebase": "^10.7.0",
     "gsap": "^3.12.2",
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
