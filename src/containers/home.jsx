@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import logo from '../assets/logo.png';
-import { storeUserData } from '../firebaseservice';
+import { storeUserData } from '../components/firebaseservice';
 
 const client_id = '166750811137-et1b6hjpveudcbk6n5p3913dpfu7fd7e.apps.googleusercontent.com';
 

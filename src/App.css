@@ -1,5 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Titan+One&display=swap");
-
+@font-face {
+  font-family: Debussylikefont;
+  src: url(./assets/AntipastoPro-ExtraBold_trial.ttf);
+}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&display=swap");
 * {
   margin: 0;
   padding: 0;
@@ -65,4 +68,146 @@ div#homecontainer {
   to {
     opacity: 1;
   }
+}
+@keyframes animatedBackground {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+div#form {
+  width: 100vw;
+  display: flex;
+  animation: animatedBackground infinite 5s linear;
+  height: 100vh;
+  background: linear-gradient(142deg, #201545, #7b294899);
+  flex-direction: column;
+  background-size: 200% 200%;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#form h1 {
+  font-size: 55px;
+  bottom: 10%;
+  cursor: pointer;
+  position: relative;
+  font-family: "Debussylikefont";
+  line-height: 117%;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  color: #add8e6;
+}
+
+#form h1 span {
+  color: #ffb6c1;
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+.box {
+  width: 35%;
+  min-height: 15rem;
+  border: #a99b9b 3px solid;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 1% 0;
+  flex-direction: column;
+  backdrop-filter: blur(12px);
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  border-radius: 19px;
+}
+.box h2 {
+  font-size: 40px;
+  font-family: "Debussylikefont";
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  color: #dfd4c5;
+  margin: 1rem 0;
+}
+.box input {
+  font-size: 19px;
+  font-family: "poppins", sans-serif;
+  font-weight: 600;
+  padding: 1px 1em;
+}
+.sa {
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  align-items: center;
+  flex-direction: column;
+  animation: fadeIn 0.5s ease-in-out forwards;
+  margin: 2%;
+}
+.sa button {
+  padding: 2% 8%;
+  font-size: 19px;
+  font-weight: 600;
+  background-color: white;
+  font-family: "Poppins";
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.sa button:hover {
+  color: maroon;
+  background-color: #ffb6c1;
+}
+.sa button,
+.sa input:focus-visible,
+.sa input {
+  border: 3px solid darkslategrey;
+  padding: 2% 8%;
+  stroke: none;
+  outline: none;
+  border-radius: 9px;
+}
+.sa button {
+  border-left: #201545 3px solid;
+}
+.flexbox {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.flexbox input {
+  width: 65%;
+}
+
+.sa input {
+  width: 130%;
+}
+.head{
+  font-family: "Debussylikefont";
+  font-size: 55px;
+  margin-bottom: 3%;
+  color: #add8e6;
+}
+.head span{
+  color: #ffb6c1;
+}
+input.guess {
+  width: 3rem;
+  font-size: 30px;
+  text-align: center;
+  background: transparent;
+  border: none;
+  color: white;
+  border-bottom: 6px white solid;
+  margin: 0 1%;
+}
+input.guess:focus-visible{
+  outline: none;
+  stroke: none;
+}
+.guess {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
