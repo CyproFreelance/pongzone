@@ -3,29 +3,29 @@
   src: url(../assets/AntipastoPro-ExtraBold_trial.ttf);
 }
 #matchmaking {
-    display: flex;
-    flex-direction: column;
-    row-gap: 15rem;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15rem;
+  justify-content: center;
+  align-items: center;
 }
 body {
-  background: #221D24;
+  background: #221d24;
 }
 #matchmaking h1 {
-  color: #ADD8E6;
+  color: #add8e6;
   font-family: "Debussylikefont";
   font-size: 50px;
 }
-#matchmaking h1:nth-child(1){
-    font-size: 70px;
+#matchmaking h1:nth-child(1) {
+  font-size: 70px;
 }
-#matchmaking h1 span{
-    color: #FFB6C1;
+#matchmaking h1 span {
+  color: #ffb6c1;
 }
 #matchmaking video {
-    width: 25%;
-    height: auto;
+  width: 25%;
+  height: auto;
 }
 div#Game {
   width: 100vw;
@@ -48,4 +48,24 @@ div#container {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+}
+div#result {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  bottom: 18%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 5%;
+  align-items: center;
+  opacity: 0;
+  animation: forwards linear 0.6s fadeIn;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

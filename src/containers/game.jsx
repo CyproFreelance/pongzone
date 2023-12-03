@@ -60,17 +60,25 @@ export const Game = () => {
     const resultMessage = document.getElementById('result');
     if (guessDigits === correctGuess) {
       resultMessage.textContent = 'You Won';
-      resultMessage.textContent
       resultMessage.style.color = '#ADD8E6';
       resultMessage.style.fontFamily = 'Debussylikefont';
-      resultMessage.style.fontSize = '50px';
+      resultMessage.style.backdropFilter = "blur(2px)";
+      resultMessage.style.fontSize = '65px';
+      resultMessage.style.zIndex = '4';
+      setTimeout(() => {
+        resultMessage.style.zIndex = '-1';
+        navigate('/result')
+      }, 2000);
     } else {
-      resultMessage.textContent = 'You Lose';
       resultMessage.style.color = '#FFB6C1';
       resultMessage.style.fontFamily = 'Debussylikefont';
-      resultMessage.style.fontSize = '50px';
+      resultMessage.textContent = 'Wrong Guess';
+      resultMessage.style.backdropFilter = "blur(2px)";
+      resultMessage.style.fontSize = '65px';
+      setTimeout(() => {
+        resultMessage.style.zIndex = '-1';
+      }, 2000);
     }
-    navigate('/result');
   }
 
   return (
