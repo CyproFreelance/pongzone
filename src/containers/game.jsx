@@ -3,7 +3,9 @@ import '../App.css';
 import { getGameData, getUserData, storeUserData } from '../components/firebaseservice';
 import { useNavigate } from 'react-router-dom';
 
+
 export const Game = () => {
+  
   const [gameData, setGameData] = useState([]);
   const [userData, setUserData] = useState({ winStreak: 0 }); // Set an initial value for winStreak
   const navigate = useNavigate();
@@ -122,6 +124,7 @@ export const Game = () => {
       </h1>
       <div id="container">
         <div className="game">
+          <canvas id='canvas'></canvas>
           {gameData.photo && <img key={gameData.photo} src={gameData.photo} id="bg" alt="" />}
         </div>
         <div className="guess">

@@ -295,3 +295,15 @@ button#specialaccess:hover{
   color: maroon;
   text-decoration: none;
 }
+.game canvas {
+  width: 600px;
+  height: 600px;
+  position: absolute;
+  border-radius: 10px;
+}
+
+.game {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
