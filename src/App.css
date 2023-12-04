@@ -7,6 +7,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
 }
 body {
   display: flex;
@@ -182,13 +187,13 @@ div#form {
 .sa input {
   width: 130%;
 }
-.head{
+.head {
   font-family: "Debussylikefont";
   font-size: 55px;
   margin-bottom: 3%;
   color: #add8e6;
 }
-.head span{
+.head span {
   color: #ffb6c1;
 }
 input.guess {
@@ -201,7 +206,7 @@ input.guess {
   border-bottom: 6px white solid;
   margin: 0 1%;
 }
-input.guess:focus-visible{
+input.guess:focus-visible {
   outline: none;
   stroke: none;
 }
@@ -210,4 +215,61 @@ input.guess:focus-visible{
   display: flex;
   align-items: center;
   justify-content: center;
+}
+div#resultcontent {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  row-gap: 2%;
+  flex-direction: column;
+}
+
+#resultcontent h1 {
+  font-size: 60px;
+  color: #add8e6;
+  font-family: "Debussylikefont";
+}
+
+#resultcontent h1 span {
+  color: #ffb6c1;
+}
+#timer p {
+  color: white;
+  font-size: 50px;
+  font-family: "poppins", sans-serif;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 2%;
+  text-align: center;
+  margin-bottom: 50%;
+}
+div#timer {
+  display: flex;
+}
+
+#timer p span {
+  background: #45403e;
+  min-width: 75px;
+  border-radius: 7px;
+}
+.win-streak-images img {
+  width: 230px;
+  filter:drop-shadow(0px 0px 1rem black) brightness(85%) blur(0.75px) ;
+  position: absolute;
+  transform: translate(-50%,-50%);
+  bottom: 0;
+  opacity: 0.87;
+}
+.win-streak-images h4 {
+  color: white;
+  font-size: 40px;
+  font-family: 'Poppins';
+  word-wrap: none;
+  position: relative;
+  left: 8rem;
 }

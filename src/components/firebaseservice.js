@@ -1,31 +1,44 @@
 // firebaseservice.js
 
-import { ref, set , get } from 'firebase/database';
+import { ref, set, get } from 'firebase/database';
 import { database } from './firebase';
 
-// Function to sanitize the email address for use in the database path
 const sanitizeEmail = (email) => {
-  return email.replace(/[.#$[\]/]/g, '_'); // Replace ".", "#", "$", "[", "]", and "/" with "_"
+  return email.replace(/[.*+#/[\]/]/, '_');
 };
 
-export const storeUserData = (email, displayName) => {
+export const storeUserData = async (email, displayName, winStreak) => {
   try {
     const sanitizedEmail = sanitizeEmail(email);
     const userRef = ref(database, `users/${sanitizedEmail}`);
+
+    const sanitizedWinStreak = typeof winStreak === 'number' && !isNaN(winStreak) ? winStreak : 0;
+
     const userData = {
       email: email,
       displayName: displayName,
-      wins: 0,
-      winStreak: 0,
+      winStreak: sanitizedWinStreak,
     };
 
     console.log('Storing user data:', userData);
 
-    set(userRef, userData);
+    await set(userRef, userData, { merge: true });
 
     console.log('User data stored successfully:', displayName);
   } catch (error) {
     console.error('Error storing user data:', error);
+  }
+};
+export const getUserData = async (email) => {
+  try {
+    const sanitizedEmail = sanitizeEmail(email);
+    const userRef = ref(database, `users/${sanitizedEmail}`);
+    const snapshot = await get(userRef);
+
+    return snapshot.exists() ? snapshot.val() : null;
+  } catch (error) {
+    console.error('Error getting user data:', error);
+    throw error;
   }
 };
 

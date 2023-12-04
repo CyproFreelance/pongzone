@@ -41,7 +41,9 @@ div#Game {
   height: 600px;
   margin-bottom: 10%;
   border-radius: 10px;
+  position: relative;
   filter: drop-shadow(0px 0px 8rem #540a7630);
+  z-index: 3;
 }
 div#container {
   display: flex;

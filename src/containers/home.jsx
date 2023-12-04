@@ -1,35 +1,46 @@
 // eslint-disable-next-line
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import logo from '../assets/logo.png';
-import { storeUserData } from '../components/firebaseservice';
+import { storeUserData, getUserData } from '../components/firebaseservice';
 
 const client_id = '166750811137-et1b6hjpveudcbk6n5p3913dpfu7fd7e.apps.googleusercontent.com';
 
 export const Home = () => {
   const navigate = useNavigate();
 
-  const responseGoogle = (decoded) => {
-    const { profileObj } = decoded;
+  useEffect(() => {
+    const checkUserSignIn = async () => {
+      const userEmail = localStorage.getItem('userEmail');
+      if (userEmail) {
+        const user = await getUserData(userEmail);
+        if (user && typeof user === 'object') {
+          navigate('/matchmaking');
+        }
+      }
+    };
+    checkUserSignIn();
+  }, [navigate]);
 
-    if (profileObj) {
-      const email = profileObj.email;
-      const displayName = profileObj.name;
+  const responseGoogle = async (decoded) => {
+    console.log('Decoded:', decoded);
 
+    const email = decoded.email || decoded.profileObj?.email;
+    const displayName = decoded.name || decoded.profileObj?.name;
+
+    if (email && displayName) {
       localStorage.setItem('userEmail', email);
       localStorage.setItem('displayName', displayName);
-      storeUserData(email, displayName);
-      navigate('/matchmaking');
+      const user = await getUserData(email);
+      const winStreak = user && typeof user === 'object' ? user.winStreak || 0 : 0;
+      storeUserData(email, displayName, winStreak);
+      setTimeout(() => {
+        navigate('/matchmaking');
+      }, 4000);
     } else {
-      const email = decoded.email;
-      const displayName = decoded.name;
-
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('displayName', displayName);
-      storeUserData(email, displayName);
-      navigate('/matchmaking');
+      console.error('Invalid decoded token structure:', decoded);
     }
   };
 
