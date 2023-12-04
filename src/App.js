@@ -17,10 +17,9 @@ function App() {
           <Route path='/gameroom' element={<Game/>}/>
           <Route path='/result' element={<Result/>}/>
           <Route path='/straightouttacampaign-admin-space' element={<Admin/>}/>
-          {/* You can change the password its just complex url anyways `userdeveloper` to something else if you want :) */}
         </Routes>
       </BrowserRouter>
-    </div>
+    </div>  
   );
 }
 
