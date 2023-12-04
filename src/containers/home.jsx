@@ -17,6 +17,9 @@ export const Home = () => {
       if (userEmail) {
         const user = await getUserData(userEmail);
         if (user && typeof user === 'object') {
+          setTimeout(() => {
+            
+          }, 5000);
           navigate('/matchmaking');
         }
       }
