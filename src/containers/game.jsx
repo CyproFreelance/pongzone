@@ -62,6 +62,7 @@ export const Game = () => {
     resultMessage.style.zIndex = '4';
 
     setTimeout(() => {
+      window.history.replaceState(null, null, window.location.href);
       navigate('/result');
       resultMessage.style.zIndex = '0';
     }, 2000);

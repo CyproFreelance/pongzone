@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { getUserData } from '../components/firebaseservice';
+import { getUserData, storeUserData } from '../components/firebaseservice';
+import { adminData } from '../components/adminData'; 
 import '../App.css';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-const images = Array.from({ length: 48 }, (_, index) => require(`../assets/images/${index + 1}.png`));
+const images = Array.from({ length: 45 }, (_, index) => require(`../assets/images/${index + 1}.png`));
 
 const zeroPad = (num) => (num < 10 ? `0${num}` : num);
 
@@ -20,6 +21,7 @@ export const Result = () => {
 
         if (userData && typeof userData === 'object') {
           setWinStreak(userData.winStreak || 0);
+          setTimeRemaining(userData.timerStats?.totalTime || 24 * 60 * 60);
         } else {
           console.log('No user data found or invalid format.');
         }
@@ -41,35 +43,26 @@ export const Result = () => {
   useEffect(() => {
     const timerInterval = setInterval(() => {
       setTimeRemaining((prevTime) => prevTime - 1);
+      storeUserData(localStorage.getItem('userEmail'), localStorage.getItem('displayName'), winStreak, { totalTime: timeRemaining });
     }, 1000);
 
     return () => clearInterval(timerInterval);
-  }, []);
+  }, [timeRemaining, winStreak]);
+  
+  window.history.pushState(null, null, '/result');
 
   useEffect(() => {
-    if (timeRemaining <= 0) {
-      navigate('/matchmaking');
-    }
-  }, [timeRemaining, navigate]);
-
-  useEffect(() => {
-    const handleNavigation = (event) => {
-      event.preventDefault();
-      const { history } = event.currentTarget;
-      if (history) {
-        history.pushState(null, null, window.location.href);
-      }
+    const handleNavigation = () => {
+      storeUserData(localStorage.getItem('userEmail'), localStorage.getItem('displayName'), winStreak, { totalTime: timeRemaining });
     };
-
-    window.addEventListener('popstate', handleNavigation);
-
+    window.addEventListener('beforeunload', handleNavigation);
     return () => {
-      window.removeEventListener('popstate', handleNavigation);
+      window.removeEventListener('beforeunload', handleNavigation);
     };
-  }, []);
+  }, [timeRemaining, winStreak]);
 
   const renderImages = () => {
-    const totalImages = 48;
+    const totalImages = 45;
     const currentWinStreak = winStreak % totalImages;
 
     return Array.from({ length: currentWinStreak }, (_, index) => (
@@ -85,6 +78,7 @@ export const Result = () => {
     return (
       <p>
         <span>{zeroPad(hours)}</span>:<span>{zeroPad(minutes)}</span>:<span>{zeroPad(seconds)}</span>
+        {adminData.includes(localStorage.getItem('userEmail')) && <button id='specialaccess'> <Link to={'/straightouttacampaign-admin-space'}>Admin Panel</Link></button>}
       </p>
     );
   };

@@ -259,17 +259,39 @@ div#timer {
 }
 .win-streak-images img {
   width: 230px;
-  filter:drop-shadow(0px 0px 1rem black) brightness(85%) blur(0.75px) ;
+  filter: drop-shadow(0px 0px 1rem black) brightness(100%) blur(0.75px);
   position: absolute;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   bottom: 0;
   opacity: 0.87;
 }
 .win-streak-images h4 {
   color: white;
   font-size: 40px;
-  font-family: 'Poppins';
+  font-family: "Poppins";
   word-wrap: none;
   position: relative;
   left: 8rem;
+}
+button#specialaccess {
+  position: absolute;
+  transform: translate(0rem, 5rem);
+  font-size: 25px;
+  font-family: 'Poppins',sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 1px 17px;
+  border-radius: 10px;
+  color: maroon;
+  background: linear-gradient(45deg, lightblue, pink);
+  cursor: pointer;
+  opacity: 1;
+  transition: .6s all ease;
+}
+button#specialaccess:hover{
+  opacity: 0.9;
+}
+#specialaccess a {
+  color: maroon;
+  text-decoration: none;
 }

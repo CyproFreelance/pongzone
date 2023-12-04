@@ -7,7 +7,7 @@ const sanitizeEmail = (email) => {
   return email.replace(/[.*+#/[\]/]/, '_');
 };
 
-export const storeUserData = async (email, displayName, winStreak) => {
+export const storeUserData = async (email, displayName, winStreak, timerStats) => {
   try {
     const sanitizedEmail = sanitizeEmail(email);
     const userRef = ref(database, `users/${sanitizedEmail}`);
@@ -18,6 +18,7 @@ export const storeUserData = async (email, displayName, winStreak) => {
       email: email,
       displayName: displayName,
       winStreak: sanitizedWinStreak,
+      timerStats: timerStats || {},
     };
 
     console.log('Storing user data:', userData);

@@ -37,8 +37,8 @@ export const Home = () => {
       const winStreak = user && typeof user === 'object' ? user.winStreak || 0 : 0;
       storeUserData(email, displayName, winStreak);
       setTimeout(() => {
-        navigate('/matchmaking');
-      }, 4000);
+      }, 8000);
+      navigate('/matchmaking');
     } else {
       console.error('Invalid decoded token structure:', decoded);
     }
