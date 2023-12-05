@@ -308,3 +308,4 @@ http.listen(port, async () => {
     // await open(url) use them for testing btw just select both lines and npx nodemon
     console.log("listening on port " + port);
 });
+module.exports.handler = serverless(app);

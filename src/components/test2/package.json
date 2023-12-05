@@ -4,9 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon"
+    "build": "your-build-script",
+    "start": "your-start-script"
   },
+  
   "author": "",
   "license": "ISC",
   "dependencies": {
