@@ -12,7 +12,7 @@ export const Load = () => {
       try {
         const userEmail = localStorage.getItem('userEmail');
         const userData = await getUserData(userEmail);
-        navigate('/result');
+        navigate('/gameroom');
         if (userData && userData.timerStats === 0) {
           setTimeout(() => {
             console.log("time protection is closed due to testing changes")
