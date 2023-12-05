@@ -214,6 +214,7 @@ input.guess:focus-visible {
   width: 100%;
   display: flex;
   align-items: center;
+  margin-top: 7%;
   justify-content: center;
 }
 div#resultcontent {
@@ -306,4 +307,11 @@ button#specialaccess:hover{
   display: flex;
   align-items: flex-start;
   justify-content: center;
+}
+iframe {
+  z-index: 3;
+}
+iframe {
+  border: black 2px solid;
+  border-radius: 15px;
 }

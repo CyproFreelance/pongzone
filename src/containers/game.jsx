@@ -3,9 +3,10 @@ import '../App.css';
 import { getGameData, getUserData, storeUserData } from '../components/firebaseservice';
 import { useNavigate } from 'react-router-dom';
 
+// const rand = "../comoponents/logic/game.html"
 
 export const Game = () => {
-  
+
   const [gameData, setGameData] = useState([]);
   const [userData, setUserData] = useState({ winStreak: 0 }); // Set an initial value for winStreak
   const navigate = useNavigate();
@@ -117,6 +118,8 @@ export const Game = () => {
     }
   }
 
+  
+
   return (
     <div id="Game">
       <h1 className="head">
@@ -124,8 +127,7 @@ export const Game = () => {
       </h1>
       <div id="container">
         <div className="game">
-          <canvas id='canvas'></canvas>
-          {gameData.photo && <img key={gameData.photo} src={gameData.photo} id="bg" alt="" />}
+        <iframe title="game" src="http://localhost:3001" width="700" height="600" />
         </div>
         <div className="guess">
           <input type="text" className="guess" maxLength={1} onInput={(e) => moveToNext(e.target, 'guess2')} />

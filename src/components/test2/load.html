@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Straight Outta Crompt</title>
+    <link rel="stylesheet" href="public/css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div id="loading-container">
+        <img src="./logo.png" alt="logo">
+        <p>Loading...</p>
+    </div>
+
+    <div id="google-sign-in-container" style="display: none;">
+        <img src="./logo.png" alt="logo">
+        <button onclick="signInWithGoogle()">Sign In with Google</button>
+    </div>
+
+    <script>
+        // Render loading screen for 4 seconds
+        setTimeout(function () {
+            // Hide the loading container
+            document.getElementById('loading-container').style.display = 'none';
+
+            // Show the Google Sign-In container
+            document.getElementById('google-sign-in-container').style.display = 'block';
+        }, 4000);
+
+        // Function to handle Google Sign-In
+        function signInWithGoogle() {
+            const successfulSignIn = true;
+
+            if (successfulSignIn) {
+                window.location.href = 'game.html';
+            } else {
+                alert('Sign-in failed. Please try again.');
+            }
+        }
+    </script>
+</body>
+
+</html>

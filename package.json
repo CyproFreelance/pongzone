@@ -5,11 +5,17 @@
   "dependencies": {
     "@react-icons/all-files": "^4.1.0",
     "@react-oauth/google": "^0.12.1",
+    "concurrently": "^8.2.2",
+    "cors": "^2.8.5",
     "dom": "^0.0.3",
     "eslint-config-react-app": "^7.0.1",
     "firebase": "^10.7.0",
+    "firebase-admin": "^11.11.1",
+    "google-auth-library": "^9.4.1",
     "gsap": "^3.12.2",
+    "http-proxy-middleware": "^2.0.6",
     "jwt-decode": "^4.0.0",
+    "open": "^9.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.1",
@@ -19,6 +25,7 @@
     "react-top-loading-bar": "^2.3.1",
     "react-tsparticles": "^2.12.2",
     "recharts": "^2.10.1",
+    "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
     "svgo": "^3.0.4",
     "tsparticles": "^2.12.0",
@@ -28,7 +35,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "server": "npx nodemon",
+    "dev": "concurrently \"npm run start\" \"npm run server\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -55,6 +64,7 @@
     "@testing-library/react": "^14.1.2",
     "@testing-library/user-event": "^14.5.1",
     "@typescript-eslint/parser": "^5.62.0",
+    "nodemon": "^3.0.2",
     "react-icons": "^4.12.0",
     "typescript": "^4.9.5",
     "webpack-dev-server": "^4.15.1"

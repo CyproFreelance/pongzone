@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="refresh" content="2;url=public/game.html?userId=" + data.userId>
+    <meta charset="utf-8">
+    <title>Straight Outta Cromption - Multiplayer Ping Pong Game</title>
+    <meta name="description"
+        content="Experience the thrill of multiplayer ping pong in Straight Outta Cromption. Challenge friends, guess images, and enjoy intense matches in this exciting game.">
+
+    <!-- Favicon and logo -->
+    <link rel="icon" type="image/png" href="/logo.png">
+    <link rel="shortcut icon" type="image/png" href="/logo.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap">
+
+    <!-- Preconnect for improved performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Open Graph Meta Tags for Social Media -->
+    <meta property="og:title" content="Straight Outta Cromption - Multiplayer Ping Pong Game">
+    <meta property="og:description"
+        content="Challenge friends, guess images, and enjoy intense multiplayer ping pong matches in Straight Outta Cromption.">
+    <meta property="og:image" content="/logo.png">
+    <meta name="og:site_name" content="Straight Outta Cromption">
+
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Straight Outta Cromption - Multiplayer Ping Pong Game">
+    <meta name="twitter:description"
+        content="Challenge friends, guess images, and enjoy intense multiplayer ping pong matches in Straight Outta Cromption.">
+    <meta name="twitter:image" content="/logo.png">
+
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 9% 0;
+            background: black;
+            flex-direction: column;
+        }
+
+        div#loading-container {
+            background: url('https://cdn.discordapp.com/attachments/1080886691067338815/1180092347372011572/logo.png?ex=657c29a4&is=6569b4a4&hm=63b7a89…&');
+            height: 500px;
+            width: 500px;
+            background-size: contain;
+        }
+
+        button {
+            background-color: #4a4c51;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            font-size: 20px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div id="loading-container"></div>
+    <!-- Custom "Sign in with Google" button -->
+    <button id="signInButton" onclick="signIn()">Sign in with Google</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Check if the user is signed in
+            const signedIn = true; // Replace with your sign-in logic
+            const signInButton = document.getElementById('signInButton');
+
+            if (signedIn) {
+                signInButton.style.display = 'none';
+
+                // Wait for 2 seconds and then redirect to game.html
+                setTimeout(() => {
+                    // Replace 'username' with the actual username or user identifier
+                    window.location.href = '/public/game.html?userId=' + username;
+                }, 2000); // 2000 milliseconds = 2 seconds (adjust as needed)
+            }
+        });
+
+        function signIn() {
+            // OAuth 2.0 parameters
+            const clientId = "166750811137-et1b6hjpveudcbk6n5p3913dpfu7fd7e.apps.googleusercontent.com";
+            const responseType = "token";
+            const scope = "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/calendar";
+            const redirectUri = "http://localhost:3000"; // Set your actual redirect URI
+
+            // Redirect to the Google OAuth 2.0 authorization endpoint
+            window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&response_type=${responseType}&scope=${scope}&redirect_uri=${redirectUri}`;
+        }
+
+        // Handle redirect after Google sign-in (assuming token is in URL)
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.hash.substring(1));
+            const accessToken = urlParams.get('access_token');
+
+            if (accessToken) {
+                // Make an AJAX request to your server to handle the user sign-in
+                fetch('/google-signin', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ id_token: accessToken }),
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Handle the server response
+                        console.log('Server response:', data);
+                        window.location.href = '/game.html?userId=' + data.userId;
+                    })
+                    .catch(error => {
+                        // Handle errors
+                        console.error('There was a problem with the fetch operation:', error);
+                    });
+            }
+        });
+    </script>
+</body>
+
+</html>
