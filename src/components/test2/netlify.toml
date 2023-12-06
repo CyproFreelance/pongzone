@@ -1,7 +1,0 @@
-[build]
-functions = "functions"  # Specify the directory containing your serverless functions
-command = "npm run build"  # Replace with your build script if needed
-
-[dev]
-command = "npm run start"  # Replace with your development script if needed
-publish = "public"  # Specify the directory containing your static assets
