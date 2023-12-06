@@ -71,25 +71,47 @@ export const Game = () => {
     }, 2000);
   };
 
+  let remainingChances = 5; // Set the desired number of chances
+
   const checkGuess = () => {
     const guessDigits = Array.from(document.querySelectorAll('.guess')).map((input) => input.value).join('').toLowerCase();
     const correctGuess = gameData.keywords;
     const resultMessage = document.getElementById('result');
-
+  
     if (guessDigits === correctGuess) {
       handleWin();
     } else {
-      resultMessage.style.color = '#FFB6C1';
-      resultMessage.style.fontFamily = 'Debussylikefont';
-      resultMessage.textContent = 'Wrong Guess';
-      resultMessage.style.backdropFilter = 'blur(2px)';
-      resultMessage.style.zIndex = '4';
-      resultMessage.style.fontSize = '65px';
-      setTimeout(() => {
-        resultMessage.style.zIndex = '0';
-      }, 2000);
+      remainingChances--;
+  
+      if (remainingChances > 0) {
+        resultMessage.style.color = '#FFB6C1';
+        resultMessage.style.fontFamily = 'Debussylikefont';
+        resultMessage.style.textAlign = 'center'
+        resultMessage.textContent = `Wrong Guess.`;
+        resultMessage.style.backdropFilter = 'blur(2px)';
+        resultMessage.style.zIndex = '4';
+        resultMessage.style.fontSize = '65px';
+  
+        setTimeout(() => {
+          resultMessage.style.zIndex = '0';
+        }, 2000);
+      } else {
+        resultMessage.style.color = '#FFB6C1';
+        resultMessage.style.fontFamily = 'Debussylikefont';
+        resultMessage.style.textAlign = 'center'
+        resultMessage.textContent = 'Out of chances. The correct answer is ' + correctGuess;
+        resultMessage.style.backdropFilter = 'blur(2px)';
+        resultMessage.style.zIndex = '4';
+        resultMessage.style.fontSize = '65px';
+  
+        setTimeout(() => {
+          resultMessage.style.zIndex = '0';
+          navigate('/result')
+        }, 2500);
+      }
     }
   };
+  
 
   function moveToNext(input, nextInputId) {
     const maxLength = parseInt(input.getAttribute('maxlength'));

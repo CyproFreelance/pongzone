@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+// import { useEffect } from 'react'
 import './special.css';
 import videoo from '../assets/load.mp4';
 import { useNavigate } from 'react-router-dom';
@@ -43,4 +44,4 @@ export const Load = () => {
 };
 
 
-// Note: Only for Production time protection was removed if you want to enable that then remove the (line 32-34) and uncomment the {line (10-30) using ctrl+/} and git that all set
+// Note: Only for Production time protection was removed if you want to enable that then remove the (line 32-34) and uncomment the {line (10-30) and (line 2) using ctrl+/} and git that all set
