@@ -127,7 +127,7 @@ export const Game = () => {
       </h1>
       <div id="container">
         <div className="game">
-        <iframe title="game" src="http://localhost:3001" width="700" height="600" />
+        <iframe title="game" src="https://proto.sarthaktulsidas.repl.co/" width="700" height="600" />
         </div>
         <div className="guess">
           <input type="text" className="guess" maxLength={1} onInput={(e) => moveToNext(e.target, 'guess2')} />

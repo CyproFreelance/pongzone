@@ -297,7 +297,7 @@ var update = setInterval(() => {
     room_manager.update();
 }, 30);
 
-const port = 3001;
+const port = 8000;
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
     next();
@@ -308,4 +308,6 @@ http.listen(port, async () => {
     // await open(url) use them for testing btw just select both lines and npx nodemon
     console.log("listening on port " + port);
 });
+
+const serverless = require('serverless-http');
 module.exports.handler = serverless(app);

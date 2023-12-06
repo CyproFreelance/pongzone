@@ -7,7 +7,6 @@
     "build": "your-build-script",
     "start": "your-start-script"
   },
-  
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -17,6 +16,7 @@
     "firebase-admin": "^11.11.1",
     "hammerjs": "^2.0.8",
     "open": "^9.1.0",
+    "serverless-http": "^3.2.0",
     "socket.io": ">=2.4.0"
   }
 }
