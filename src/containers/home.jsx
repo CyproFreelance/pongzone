@@ -19,7 +19,7 @@ export const Home = () => {
         if (user && typeof user === 'object') {
           setTimeout(() => {
             navigate('/matchmaking');
-          }, 5000);
+          }, 10000);
         }
       }
     };

@@ -1,8 +1,8 @@
 import React from 'react';
-// import { useEffect } from 'react'
 import './special.css';
 import videoo from '../assets/load.mp4';
 import { useNavigate } from 'react-router-dom';
+// import { useEffect } from 'react'
 // import { getUserData } from '../components/firebaseservice';
 
 export const Load = () => {
